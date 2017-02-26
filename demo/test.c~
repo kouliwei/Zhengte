@@ -1,0 +1,218 @@
+#include "include.h"
+
+
+
+#ifdef TEST
+void Test(void)
+{
+	uint8_t ch = 0;
+	uint8_t exit_flag = 0;
+	uint8_t flag = 0;
+	
+	while(1){
+		
+	if(0 == flag)	
+	{
+	printf("\r\n**************welcome to the menu****************\r\n");
+	printf("press a or A to the first Led\r\n");
+	printf("press b or B to the twice Led\r\n");
+	printf("press c or C to the third Led\r\n");
+	printf("press d or D to the forth Led\r\n");
+	printf("press e or E to exit the menu\r\n");
+	flag = 1;
+	}
+	
+	while(USART_GetFlagStatus(EVAL_COM1, USART_FLAG_RXNE) == RESET);
+	USART_ClearFlag(USART3, USART_FLAG_RXNE);
+	ch = USART_ReceiveData(USART3);
+		switch(ch){
+			case 'a':
+			case 'A':
+			  first();
+			  flag = 0;
+				break;
+			case 'b':
+			case 'B':
+				twice();
+			  flag = 0;
+				break;
+			case 'c':
+			case 'C':
+		    third();
+			  flag = 0;
+				break;
+			case 'd':
+			case 'D':
+				forth();
+			  flag = 0;
+			  break;
+			case 'e':
+			case 'E':
+				printf("go home now\t\n");
+			  exit_flag = 1;			
+		}
+		if(exit_flag == 1)
+			break;
+ }
+	
+ }
+
+ 
+static void first(void)
+ {
+	uint8_t ch = 0;
+	uint8_t exit_flag = 0;
+	uint8_t flag = 0;
+	while(1){
+		
+	if(0 == flag)	
+	{
+	printf("\r\n******welcome to the first Led**********\r\n");
+	printf("press a or A to the Led_On\r\n");
+	printf("press w or W to the Led_Off\r\n");
+	printf("press e or E to exit the menu\r\n");
+	flag = 1;
+	}
+	
+	while(USART_GetFlagStatus(EVAL_COM1, USART_FLAG_RXNE) == RESET);
+	USART_ClearFlag(USART3, USART_FLAG_RXNE);
+	ch = USART_ReceiveData(USART3);
+		switch(ch){
+			case 'a':
+			case 'A':
+			  Led_On(LED1);
+				break;
+			case 'w':
+			case 'W':
+				Led_Off(LED1);
+				break;
+			case 'e':
+			case 'E':
+				printf("exit the first Led\t\n");
+			  exit_flag = 1;			
+		}
+		if(exit_flag == 1)
+			break;
+ }
+	 
+ }
+ 
+static void twice(void)
+ {
+	uint8_t ch = 0;
+	uint8_t exit_flag = 0;
+	uint8_t flag = 0;
+	while(1){
+		
+	if(0 == flag)	
+	{
+	printf("\r\n******welcome to the twice Led*********\r\n");
+	printf("press a or A to the Led_On\r\n");
+	printf("press w or W to the Led_Off\r\n");
+	printf("press e or E to exit the menu\r\n");
+	flag = 1;
+	}
+	
+	while(USART_GetFlagStatus(EVAL_COM1, USART_FLAG_RXNE) == RESET);
+	USART_ClearFlag(USART3, USART_FLAG_RXNE);
+	ch = USART_ReceiveData(USART3);
+		switch(ch){
+			case 'a':
+			case 'A':
+			  Led_On(LED2);
+				break;
+			case 'w':
+			case 'W':
+				Led_Off(LED2);
+				break;
+			case 'e':
+			case 'E':
+				printf("exit the twice Led\r\n");
+			  exit_flag = 1;			
+		}
+		if(exit_flag == 1)
+			break;
+ }
+}
+static void third(void)
+ {
+	uint8_t ch = 0;
+	uint8_t exit_flag = 0;
+	uint8_t flag = 0;
+	
+	while(1){
+	if(0 == flag)
+	{
+	printf("\r\n******welcome to the third Led**********\r\n");
+	printf("press a or A to the Led_On\r\n");
+	printf("press w or W to the Led_Off\r\n");
+	printf("press e or E to exit the menu\r\n");
+	flag = 1;
+	}
+	
+	while(USART_GetFlagStatus(EVAL_COM1, USART_FLAG_RXNE) == RESET);
+	USART_ClearFlag(USART3, USART_FLAG_RXNE);
+	ch = USART_ReceiveData(USART3);
+		switch(ch){
+			case 'a':
+			case 'A':
+			  Led_On(LED3);
+				break;
+			case 'w':
+			case 'W':
+				Led_Off(LED3);
+				break;
+			case 'e':
+			case 'E':
+				printf("exit the first Led\r\n");
+			  exit_flag = 1;			
+		}
+		if(exit_flag == 1)
+			break;
+ }
+	 
+}
+static void forth(void)
+ {
+	 
+  uint8_t ch = 0;
+	uint8_t exit_flag = 0;
+	uint8_t flag = 0;
+	
+	while(1){
+		
+	if(flag == 0)
+	{
+	printf("\r\n******welcome to the forth Led*********\r\n");
+	printf("press a or A to the Led_On\r\n");
+	printf("press w or W to the Led_Off\r\n");
+	printf("press e or E to exit the menu\r\n");
+	flag = 1;
+	}
+	
+	while(USART_GetFlagStatus(EVAL_COM1, USART_FLAG_RXNE) == RESET);
+	USART_ClearFlag(USART3, USART_FLAG_RXNE);
+	ch = USART_ReceiveData(USART3);
+		switch(ch){
+			case 'a':
+			case 'A':
+			  Led_On(LED4);
+				break;
+			case 'w':
+			case 'W':
+				Led_Off(LED4);
+				break;
+			case 'e':
+			case 'E':
+				printf("exit the first Led\r\n");
+			  exit_flag = 1;			
+		}
+		if(exit_flag == 1)
+			break;
+ }
+	 
+ }
+#endif
+ 
+
+
